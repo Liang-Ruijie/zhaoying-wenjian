@@ -1,10 +1,22 @@
-# 照影问剑 · 10版待上传源码
+# 照影问剑
 
-版本：v2-close-20261101-10。本目录为唯一待上传目录zhaoying-wenjian-publish-10的源码内容，未推送或公开部署。游戏代码、人物、音效和手机效果与核验通过的10版一致；本次只整理命令、预览工具和说明。
+**在线试玩：https://liang-ruijie.github.io/zhaoying-wenjian/**
 
-## 安装、构建、检查与预览
+源码：https://github.com/Liang-Ruijie/zhaoying-wenjian
 
-需要Node.js 24（自带npm）。在本目录打开终端，按顺序执行：
+公开版本：v2-close-20261101-10。电脑与已认可的手机横屏体验，使用GitHub Pages静态托管，无需安装、登录或输入密钥，也不依赖开发者电脑开机。
+
+## 可用范围与操作
+
+普通游戏、浏览器本地学习、习惯反馈、镜剑分享及四套预设试炼。先试剑25秒，浏览器真实采样和训练，再与镜剑交手。镜剑参考部分操作倾向，也受战斗规则影响；习惯统计不等于分身相似度，不保证完整复制动作节奏。
+
+电脑：WASD移动，鼠标瞄准，按住左键攻击，空格/Shift冲刺，Esc暂停。手机：横屏，左摇杆移动，右侧按住攻击，松开攻击后点闪避。
+
+公开版只使用本地预设，不提供自然语言生成表单或付费模型后端；不需要DeepSeek密钥。分享链接携带镜剑配置和模型，使用当前公网域名与仓库子路径。
+
+## 本地安装、构建与预览
+
+需要Node.js 24和npm，在仓库根目录执行：
 
 ```sh
 npm ci
@@ -13,26 +25,12 @@ npm run check
 npm run preview
 ```
 
-看到预览地址后，打开 http://127.0.0.1:8090/ 。按Control+C停止。预览服务只在当前电脑监听，不读取.env或任何密钥；它不是公网地址。
+打开 http://127.0.0.1:8090/ ，Control+C停止预览。这是本机开发入口；公开试玩使用上面的GitHub Pages地址。
 
-四个命令均附带实际工具。另保留`npm run build:public`作为公开构建别名，供已有GitHub Actions使用，结果与`npm run build`相同。没有服务端生成、付费评测或内部测试命令。
+`build:public`是`build`的公开构建别名，供工作流使用。产物只在`release/pages/`：游戏HTML、版本信息、现有第三方声明及.nojekyll。图片、音乐和代码内嵌；node_modules及构建输出不需要提交。
 
-构建输出只在`release/pages/`，包含index.html、version.json、现有第三方声明和.nojekyll。代码、图片及音频内嵌，不依赖电脑上的其他工程目录。node_modules和构建输出已加入.gitignore，不需要上传。
+## 部署
 
-## 试玩范围与操作
+仓库Pages来源为GitHub Actions，工作流在`.github/workflows/pages.yml`。推送main后自动安装依赖、构建和检查，只上传release/pages并部署，不需要模型Secret。
 
-无需密钥，支持普通模式、浏览器本地学习、习惯反馈、镜剑分享和四套预设试炼。自然语言生成仅在本机完整版提供，此公开版没有生成表单或付费后端。
-
-电脑版：WASD移动，鼠标瞄准，按住左键攻击，空格/Shift冲刺，Esc暂停。先试剑25秒，实际采样训练后继续与镜剑交手。手机横屏，左侧摇杆移动，右侧按住攻击，松开攻击后点闪避；沿用已认可效果。
-
-## 确认后部署GitHub Pages
-
-1. 负责人确定GitHub账号、仓库名，并确认允许推送本目录及公开部署。建议新建独立仓库zhaoying-wenjian，默认分支main。
-2. 授权后，将本目录内容作为仓库根目录上传，包含隐藏的.github和.gitignore；不上传外层内部工程、备份、node_modules或本机密钥。
-3. 在仓库Settings → Pages中将Source设为GitHub Actions。
-4. 推送main或在Actions中手动运行“Build and deploy public game”。工作流安装依赖、公开构建和检查，只上传release/pages，再部署到github-pages环境。不需要DeepSeek Secret。
-5. 工作流成功后使用其输出的真实地址，通常为https://账号.github.io/仓库名/，再验证首次进入和分享链接往返。分享基址跟随当前域名及仓库子路径，不写死localhost或局域网地址。
-
-本轮未执行GitHub推送、远端Actions或公开部署；Linux托管环境和真实公网访问要在授权部署后确认。旧的zhaoying-wenjian目录不用于本次上传。
-
-原有第三方声明保留原样，未在本轮调整或扩写来源/许可信息。本目录不含原内部工程历史、服务端、密钥、账本、私人截图或测试资料。产品文档和面试讲述材料不在本次整理范围。
+本仓库仅含整理后的公开源码，没有内部工程历史、密钥、服务端、私人账本或内部测试资料。现有第三方声明及发布时核对的来源记录见[THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt)，原声明保留。
