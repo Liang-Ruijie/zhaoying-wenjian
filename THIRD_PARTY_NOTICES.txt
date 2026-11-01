@@ -1,0 +1,41 @@
+Third-party notices
+
+This game is built on the v0.8 xianxia dueling prototype. The prototype has since been substantially rewritten and extended for this project.
+
+three.js — Copyright © 2010-2026 three.js authors, MIT License.
+
+The MIT License
+
+Copyright © 2010-2026 three.js authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+Base-code provenance (release verification)
+
+The earlier prototype includes code derived from SELF PLAY by Team Kanban /
+Awaiz Ahmed: https://github.com/4waiz/self-play
+Reviewed base commit: 149e872166e3c4dd4f9f9ecad5eb7d56c4c9d440.
+The upstream package.json explicitly declares the MIT license and identifies
+that author. No separate upstream LICENSE file was present at that commit.
+This record retains that attribution and declared license; it does not claim
+that this project authored the original learning algorithm or independently
+cleared every possible right. The MIT permission and warranty terms printed
+above are retained in full. Upstream logos, promotional media and fonts are
+not part of this distribution.

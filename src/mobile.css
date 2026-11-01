@@ -1,0 +1,72 @@
+/* Mobile07: full visual viewport, floating controls, no default teaching. */
+.mobile-ready,.mobile-you,.mobile-aim-cue,.mobile-target,.mobile-objective,.mobile-control-bar {display:none}
+html.mobile {--view-w:100vw;--view-h:100dvh;--view-x:0px;--view-y:0px;--u:clamp(.65px,min(calc(var(--view-w)/1280),calc(var(--view-h)/720)),1.2px)}
+body.mobile #app,body.mobile #ui {inset:auto;left:var(--view-x);top:var(--view-y);width:var(--view-w);height:var(--view-h)}
+body.mobile .mobile-control-bar {position:fixed;left:var(--view-x);top:var(--view-y);height:var(--view-h);width:var(--view-w);pointer-events:none;z-index:8;background:none;border:0;padding:0}
+body.mobile[data-screen=''][data-hud='calibrate'] .mobile-control-bar,body.mobile[data-screen=''][data-hud='combat'] .mobile-control-bar {display:block}
+.move-control {position:absolute;left:max(18px,env(safe-area-inset-left));bottom:max(14px,env(safe-area-inset-bottom));width:94px;height:94px}
+.move-stick {position:relative;width:94px;height:94px;border:1px solid #42685499;border-radius:50%;background:radial-gradient(#f7f2e497,#365b4530);box-shadow:inset 0 0 0 5px #f5efdf6e,0 1px 6px #243d2c25;pointer-events:auto;touch-action:none;user-select:none}
+.move-stick .knob {left:50%;top:50%;width:38px;height:38px;margin:-19px;border:1px solid #b3a079;background:#285443b8;box-shadow:0 1px 4px #213f3033;pointer-events:none}
+.stick-arrows {position:absolute;inset:0;display:grid;place-content:center;text-align:center;color:#486b5888;font:13px/2.2 serif;pointer-events:none}
+body.mobile .attack-btn,body.mobile .dash-btn {position:absolute;inset:auto;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px;pointer-events:auto;touch-action:none;user-select:none;border:1px solid var(--gold);background:linear-gradient(145deg,#43746ae8,#204c45ec);color:#fff3d4;box-shadow:inset 0 0 0 4px #234d4580,inset 0 0 0 5px #af9b6b99,0 2px 6px #23453433;padding:5px;border-radius:50%;font-family:var(--serif)}
+body.mobile .attack-btn {right:max(16px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));width:84px;height:84px;font-size:21px}
+body.mobile .dash-btn {right:calc(max(16px,env(safe-area-inset-right)) + 98px);bottom:max(25px,calc(env(safe-area-inset-bottom) + 13px));width:66px;height:66px;font-size:17px;background:linear-gradient(145deg,#536f68e8,#294f47ec)}
+body.mobile .attack-btn small,body.mobile .dash-btn small {font:11px/1.2 system-ui,sans-serif}
+body.mobile .attack-btn.on {background:linear-gradient(145deg,#6d9987,#2c6557);box-shadow:0 0 0 3px #9eaf9180,inset 0 0 0 3px #af9b6b}
+body.mobile .dash-btn.cooling {background:#65736de8;color:#eee9d8}
+.attack-direction {position:absolute;top:3px;left:33px;font:15px/1 serif;transform-origin:9px 38px;pointer-events:none}
+body.mobile .touch-guide,body.mobile .run-goal,body.mobile .attack-hint {display:none!important}
+body.mobile .hud-tl {top:max(6px,env(safe-area-inset-top));left:max(12px,env(safe-area-inset-left));gap:1px}
+body.mobile .hud-tl .round-label {font:11px/1.4 var(--serif);letter-spacing:.03em}
+body.mobile .hud-tl .score {font-size:23px;line-height:1.1}
+body.mobile .hud-bl {top:50px;bottom:auto;gap:4px;left:max(12px,env(safe-area-inset-left))}
+body.mobile .hp {gap:4px}body.mobile .hp i {width:10px;height:14px}
+body.mobile .dash {display:none}
+body.mobile .hud-top {top:max(7px,env(safe-area-inset-top))}
+body.mobile .rec {padding:4px 9px}.mobile .rec .label {font-size:12px}.mobile .rec-time {font-size:23px}
+body.mobile .pause-btn {width:44px;height:44px;top:max(7px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right))}
+body.mobile[data-screen=''] .mobile-you {display:block;position:fixed;transform:translate(-50%,-100%);font:600 12px/1.1 system-ui,sans-serif;background:#174b3fe8;color:#fff9e7;padding:3px 7px;border:1px solid #f8f1da;border-radius:6px 2px;box-shadow:0 1px 4px #203d3244;pointer-events:none;z-index:6}
+.mobile-you::after {content:'';position:absolute;top:100%;left:50%;margin-left:-3px;border:3px solid transparent;border-top-color:#174b3f}
+body.mobile[data-screen=''] .mobile-aim-cue,body.mobile[data-screen=''] .mobile-target {display:block;position:fixed;pointer-events:none;z-index:6;color:#28644e;font:24px/1 serif;text-shadow:0 1px 3px #fff}
+body.mobile .mobile-target {transform:translate(-50%,-50%);color:#9c4336!important;font-size:28px!important}
+body.mobile[data-screen=''] .mobile-objective {display:block;position:absolute;top:max(13px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);max-width:60%;font:13px/1.5 var(--serif);text-align:center;color:#2e4d3d;text-shadow:0 1px 2px #fffaf0;pointer-events:none}
+body.mobile[data-screen='']:not([data-mobile-phase='']) .mobile-ready {display:flex;position:absolute;top:max(8px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);max-width:calc(100% - 150px);align-items:center;flex-direction:column;gap:8px;padding:6px 12px;background:#f7f2e6d9;border-radius:6px 2px;z-index:12;font:13px/1.5 system-ui,sans-serif;color:#375a4c;pointer-events:auto}
+.mobile-ready>div {display:flex;gap:8px;flex-wrap:wrap}.mobile-ready button {min-height:44px;font-size:14px;padding:6px 10px}
+body.mobile:not([data-mobile-phase='']) .hud-tl,body.mobile:not([data-mobile-phase='']) .hud-bl,body.mobile:not([data-mobile-phase='']) .hud-top {visibility:hidden}
+body.mobile.needs-landscape .rotate-hint {left:var(--view-x);top:var(--view-y);right:auto;bottom:auto;width:var(--view-w);height:var(--view-h)}
+body.mobile .banner,body.mobile .callout {display:none!important}
+body.mobile .toasts {top:43px;max-width:55%;font-size:11px}
+/* Flow: primary actions precede optional sharing and never depend on scrolling to the bottom. */
+body.mobile .screen:not(.scr-title):not(.scr-train) {padding:max(10px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left))}
+body.mobile .over-wrap {display:flex;flex-direction:column;align-items:stretch;width:min(800px,100%);gap:10px;margin:0 auto!important;padding:4px 0 10px}
+body.mobile .over-eyebrow {order:0}body.mobile .over-title {order:1;font-size:25px;line-height:1.3;margin:0}
+body.mobile .over-wrap>.btn-row {order:2;flex-wrap:wrap;gap:8px;margin:0;padding:2px 0}
+body.mobile .over-stats {order:3;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:2px 0}
+body.mobile .over-stats .marker {font-size:29px}body.mobile .over-stats .label {font-size:11px}
+body.mobile .over-wrap>.share {order:4;padding:12px}.mobile .share-copy {font-size:13px!important;line-height:1.6}
+body.mobile .share-row {flex-wrap:wrap;gap:8px}body.mobile .share-row input {max-width:100%;width:min(240px,100%)}
+body.mobile .profile-card,body.mobile .intro-card,body.mobile .pause-card,body.mobile .audio-card {padding:15px 20px}
+body.mobile .profile-body {flex-wrap:wrap;gap:14px}.mobile .insights {font-size:14px}
+body.mobile .profile-card h2,body.mobile .intro-card h2,body.mobile .pause-card h2 {font-size:24px;line-height:1.35}
+body.mobile .profile-foot {gap:10px;align-items:center;flex-wrap:wrap}.mobile .profile-next {font-size:14px}
+body.mobile .screen .btn,body.mobile .screen button.label,body.mobile .screen summary {min-height:44px;font-size:14px}
+body.mobile .scr-mobilehelp p {font:14px/1.7 var(--serif);max-width:550px}
+body.mobile .scr-mobilehelp .pause-card {width:min(620px,100%)}
+/* Home uses actual WebView height, a separate footer and a scrollable text column. */
+body.mobile .title-masthead {top:12px;left:max(5%,env(safe-area-inset-left));right:max(5%,env(safe-area-inset-right));padding-bottom:6px}
+body.mobile .masthead-note {display:none}
+body.mobile .title-wrap {top:48px;bottom:58px;left:max(5%,env(safe-area-inset-left));width:53%;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;padding:0 8px 2px 0}
+body.mobile .title-wrap>.eyebrow,body.mobile .title-description,body.mobile .sample-note,body.mobile .title-wrap>.controls {display:none}
+body.mobile .title-line {margin:3px 0 6px;gap:12px}.mobile .title {font-size:clamp(32px,5vw,48px)}
+body.mobile .title-line .seal {font-size:11px;padding:5px}.mobile .tagline {font-size:14px;line-height:1.5;margin:5px 0 12px;letter-spacing:.05em}
+body.mobile .title-wrap .btn-row {gap:8px;margin-top:8px;flex-wrap:wrap}.mobile .title-wrap .btn {font-size:16px;padding:8px 14px}
+body.mobile .title-foot {bottom:max(2px,env(safe-area-inset-bottom));left:max(4%,env(safe-area-inset-left));right:max(4%,env(safe-area-inset-right));height:46px;display:flex;align-items:center;justify-content:flex-start;gap:12px;overflow-x:auto;white-space:nowrap;touch-action:pan-x}
+body.mobile .title-foot .label {font-size:12px;flex-shrink:0}.mobile .title-foot .pace-setting {font-size:12px;min-height:44px;margin:0}
+@media(max-height:340px){body.mobile .title-wrap {top:43px;bottom:52px}body.mobile .title-foot .best {display:none}body.mobile .title-line {margin:0 0 3px}body.mobile .tagline {font-size:12px;margin:3px 0 6px}}
+@media(max-width:650px){body.mobile .title-foot .best {display:none}body.mobile .attack-hint {font-size:11px;padding:0}body.mobile .over-stats {grid-template-columns:repeat(3,minmax(0,1fr))}body.mobile .mobile-lesson-copy {font-size:11px}}
+body.mobile .trial-result {display:flex;flex-direction:column;gap:8px}
+body.mobile .trial-result>.label {order:0}body.mobile .trial-result>h2 {order:1;margin:2px 0;font-size:24px;line-height:1.3}
+body.mobile .trial-result-summary {order:2}body.mobile .trial-result>.btn-row {order:3;margin:2px 0;flex-wrap:wrap}
+body.mobile .trial-result-metrics,body.mobile .trial-result-best {order:4}body.mobile .trial-result>p {order:5}
+body.mobile .trial-result>.trial-result-summary {order:2}body.mobile .trial-result>.trial-feedback {order:6}
+body.mobile .trial-result>label {order:7}body.mobile .trial-feedback-status {order:8}

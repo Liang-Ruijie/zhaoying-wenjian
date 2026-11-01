@@ -1,0 +1,7 @@
+node_modules/
+release/
+dist/
+index.html
+.env*
+.local/
+.DS_Store

@@ -1,0 +1,95 @@
+/* Mobile08: primary game pages are single-view compositions, not documents.
+   Only optional settings bodies scroll; their return control stays visible. */
+body.mobile .screen {overflow:hidden;box-sizing:border-box}
+body.mobile .screen:not(.scr-title):not(.scr-train) {overflow:hidden;align-items:center}
+body.mobile .screen:not(.scr-title):not(.scr-train)>:first-child {max-height:100%;flex-shrink:1}
+body.mobile .screen :where(h2,h3,p,ul) {margin:0}
+body.mobile .screen [hidden] {display:none!important}
+body.mobile .screen .btn {min-height:44px;padding:6px 12px;line-height:1.2;letter-spacing:.08em;white-space:normal}
+body.mobile .screen>.credit {display:none}
+body.mobile .profile-card,body.mobile .pause-card,body.mobile .over-wrap,body.mobile .trial-result,body.mobile .how-wrap,body.mobile .mobile-menu-card {width:min(800px,100%);min-width:0;max-height:100%;box-sizing:border-box;overflow:hidden;padding:12px 18px;gap:8px;margin:0!important}
+body.mobile .profile-card {display:grid;grid-template-rows:auto auto minmax(0,1fr) auto auto;height:min(310px,100%)}
+body.mobile .profile-card h2 {font-size:24px;line-height:1.2;margin:0}
+body.mobile .profile-card>.label {font-size:11px;line-height:1.2}
+body.mobile .profile-card .radar,body.mobile .arch-blurb,body.mobile .model-meta,body.mobile .profile-tip,body.mobile .insights details {display:none}
+body.mobile .profile-body {display:flex;flex-flow:row;align-items:center;margin:0;min-height:0}
+body.mobile .insights {font-size:16px;line-height:1.6;padding-left:18px}
+body.mobile .insights li {font-size:16px;line-height:1.5;padding-left:18px}
+body.mobile .profile-next {margin:0;padding-top:7px;font-size:14px;line-height:1.4}
+body.mobile .profile-next small {display:block;font-size:11px;line-height:1.4;margin-top:3px}
+body.mobile .profile-foot {display:flex;flex-flow:row;justify-content:flex-end;gap:0;margin:0}
+body.mobile .profile-foot .btn {min-width:190px}
+body.mobile .pause-card {align-items:stretch;gap:7px}
+body.mobile .pause-card>.label {font-size:11px;line-height:1.1}
+body.mobile .pause-card h2 {font-size:24px;line-height:1.2;margin:0}
+body.mobile .btn-col {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;width:100%;min-width:0}
+body.mobile .scr-recovery .recovery-copy {max-width:none;font-size:13px;line-height:1.5;margin:0}
+body.mobile .scr-mobilehelp .pause-card {width:min(800px,100%);gap:6px}
+body.mobile .scr-mobilehelp p {font-size:13px;line-height:1.5;max-width:none}
+body.mobile .scr-mobilehelp .btn {align-self:flex-end;min-width:140px}
+body.mobile .how-wrap {display:flex;align-items:stretch;gap:6px;padding:0}
+body.mobile .how-wrap>.label {font-size:11px}
+body.mobile .how-wrap h2 {font-size:22px;max-width:none;line-height:1.2}
+body.mobile .how-wrap .steps {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%}
+body.mobile .how-wrap .step {padding:9px;min-width:0;box-sizing:border-box}
+body.mobile .how-wrap .step .label {font-size:12px;letter-spacing:0}
+body.mobile .how-wrap .step p {font-size:13px;line-height:1.4;letter-spacing:0;margin-top:4px}
+body.mobile .how-wrap>.learning-detail,body.mobile .how-more {display:none}
+body.mobile .how-wrap>.btn {align-self:flex-end;min-width:140px}
+body.mobile .over-wrap {gap:8px;padding:8px 0}
+body.mobile .over-eyebrow {font-size:11px;line-height:1.2}
+body.mobile .over-title {font-size:25px;line-height:1.25}
+body.mobile .over-stats {order:2;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0}
+body.mobile .over-stats>div:nth-child(n+4) {display:none}
+body.mobile .over-stats .n,body.mobile .over-stats .marker {font-size:27px;line-height:1.3}
+body.mobile .over-wrap>.btn-row,body.mobile .trial-result>.btn-row {order:4;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0;padding:0;width:100%}
+body.mobile .trial-result {gap:7px;display:flex;flex-direction:column}
+body.mobile .trial-result>.label {font-size:11px;line-height:1.2}
+body.mobile .trial-result>h2 {font-size:24px;line-height:1.2;margin:0}
+body.mobile .trial-result>p {font-size:13px;line-height:1.5;margin:0;order:2}
+body.mobile .trial-result>.trial-result-best {font-size:11px;color:var(--muted-ink)}
+body.mobile .trial-wrap {display:grid;grid-template-columns:minmax(160px,.7fr) minmax(0,1.8fr);grid-template-rows:auto minmax(0,1fr) 44px;gap:9px 16px;width:min(900px,100%);height:100%;max-height:340px;box-sizing:border-box;margin:0;padding:12px 16px;overflow:hidden}
+body.mobile .trial-wrap>h2 {grid-column:1/-1;font-size:22px;line-height:1.2;margin:0}
+body.mobile .trial-wrap>.label,body.mobile .trial-wrap>p,body.mobile .trial-form,body.mobile .trial-card {display:none!important}
+body.mobile .trial-presets {grid-row:2;grid-column:1;display:grid;grid-template-columns:1fr 1fr;align-content:center;gap:8px;margin:0;min-height:0}
+body.mobile .trial-presets .btn {padding:7px 6px;font-size:14px}
+body.mobile .trial-presets .btn[aria-pressed=true] {background:#28584e;color:#fff3d4}
+body.mobile .mobile-trial-preview {grid-column:2;grid-row:2;align-self:center;min-width:0}
+body.mobile .mobile-trial-preview h3 {font-size:18px;line-height:1.3;margin:0 0 5px}
+body.mobile .mobile-trial-preview p {font-size:12px;line-height:1.5;margin:2px 0;overflow-wrap:anywhere}
+body.mobile .mobile-trial-preview .mobile-trial-goal {font-size:14px;color:var(--jade)}
+body.mobile .trial-wrap>.mobile-trial-actions {grid-column:1/-1;grid-row:3;display:flex;gap:10px;justify-content:flex-end;flex-wrap:nowrap;margin:0}
+body.mobile .mobile-trial-actions .btn {min-height:44px;font-size:14px;padding:5px 12px}
+body.mobile .mobile-trial-actions [data-trial-act=export],body.mobile .mobile-trial-actions [data-trial-act=clear] {display:none}
+body.mobile .mobile-menu-card,body.mobile .audio-card {display:flex;flex-direction:column;width:min(730px,100%);height:100%;max-height:100%;min-height:0;overflow:hidden;box-sizing:border-box;padding:12px 18px;gap:8px}
+body.mobile .mobile-menu-card h2,body.mobile .audio-card h2 {font-size:22px;line-height:1.2;margin:0}
+body.mobile .mobile-menu-card>button,body.mobile .audio-card>[data-act=audio-back] {flex:none;align-self:flex-end;min-width:140px}
+body.mobile .mobile-settings-scroll {overflow:auto;touch-action:pan-y;overscroll-behavior:contain;min-height:0;flex:1;padding:3px 3px 6px}
+body.mobile .mobile-preferences {display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start}
+body.mobile .mobile-preferences button {display:flex;align-items:center;justify-content:center;min-height:44px;font-size:14px;padding:6px;border:1px solid var(--line-ink);white-space:normal}
+body.mobile .mobile-preferences .diagnostic-controls {grid-column:1/-1}
+body.mobile .audio-card>.label {display:none}
+body.mobile .audio-card .audio-row {min-height:44px}
+body.mobile .mobile-share-body,body.mobile .mobile-feedback-body {flex:1;min-height:0}
+body.mobile .mobile-share-body .share {padding:0;border:0;background:none;box-shadow:none}
+body.mobile .mobile-share-body .share::before,body.mobile .mobile-share-body .share::after,body.mobile .mobile-share-body .share>.label {display:none}
+body.mobile .mobile-share-body .share-copy {font-size:12px!important;line-height:1.5;margin:0 0 7px}
+body.mobile .share-row {display:flex;flex-flow:row;gap:8px}
+body.mobile .share-row input {flex:1;min-width:0;max-width:none;width:0;box-sizing:border-box;height:44px;font-size:14px!important;padding:8px}
+body.mobile .share-out {height:44px;box-sizing:border-box;margin-top:6px}
+body.mobile .mobile-feedback-body {display:flex;flex-direction:column;gap:5px}
+body.mobile .mobile-feedback-body>p:first-child {display:none}
+body.mobile .mobile-feedback-body .trial-feedback {margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+body.mobile .mobile-feedback-body>label {display:flex;align-items:center;gap:8px;font-size:12px}
+body.mobile .mobile-feedback-body .trial-note {flex:1;min-width:0;height:44px;box-sizing:border-box;margin:0;font-size:13px}
+body.mobile .trial-feedback-status {font-size:12px;line-height:1.4}
+body.mobile .title-wrap {overflow:hidden;padding:0;bottom:54px}
+body.mobile .title-foot {overflow:hidden;flex-wrap:nowrap;gap:16px}
+body.mobile .title-foot .best {width:auto}
+body.mobile .duel {padding:5px 8px;gap:3px;margin:0}
+body.mobile .duel-name {font-size:19px;line-height:1.2;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.mobile .duel-meta {font-size:11px;line-height:1.3}
+body.mobile .duel>.label {display:none}
+body.mobile .title-wrap:has(.duel:not([hidden])) .title-line,body.mobile .title-wrap:has(.duel:not([hidden])) .tagline {display:none}
+body.mobile .train-card {box-sizing:border-box;max-height:100%;max-width:100%;padding:12px 18px}
+@media(max-height:290px){body.mobile .screen:not(.scr-title):not(.scr-train) {padding-top:7px;padding-bottom:7px}body.mobile .profile-card,body.mobile .pause-card,body.mobile .trial-result,body.mobile .mobile-menu-card {padding:9px 14px;gap:5px}body.mobile .trial-wrap {padding:9px 12px;gap:6px 12px}body.mobile .mobile-trial-preview h3 {font-size:16px;margin-bottom:3px}body.mobile .mobile-trial-preview p {font-size:11px;line-height:1.4}body.mobile .mobile-trial-preview .mobile-trial-goal {font-size:13px}body.mobile .tagline {display:none}body.mobile .how-wrap .step {padding:6px}body.mobile .how-wrap .step p {font-size:12px}body.mobile .scr-mobilehelp p {font-size:12px}}

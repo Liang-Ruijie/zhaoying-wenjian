@@ -1,0 +1,6 @@
+import * as THREE from 'three';
+export class InterludeMist{
+ constructor(scene){const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d');for(const[a,b,r]of [[40,60,38],[75,65,42],[90,48,22]]){const g=x.createRadialGradient(a,b,0,a,b,r);g.addColorStop(0,'rgba(62,99,88,.3)');g.addColorStop(1,'rgba(62,99,88,0)');x.fillStyle=g;x.fillRect(0,0,128,128);}this.map=new THREE.CanvasTexture(c);this.group=new THREE.Group();scene.add(this.group);this.level=0;this.t=0;this.parts=[];for(let i=0;i<3;i++){const material=new THREE.MeshBasicMaterial({map:this.map,transparent:true,opacity:0,depthWrite:false});const mesh=new THREE.Mesh(new THREE.PlaneGeometry(6,3),material);mesh.rotation.x=-Math.PI/2;mesh.rotation.z=i*1.1;mesh.position.y=.04+i*.005;this.group.add(mesh);this.parts.push(mesh);}this.group.visible=false;}
+ update(dt,p,active,reduced){this.t+=dt;this.level+=((active?1:0)-this.level)*Math.min(1,dt*6);this.group.visible=this.level>.005;this.group.position.set(p.x,0,p.z);for(let i=0;i<this.parts.length;i++){const m=this.parts[i],a=i*2.1;m.position.x=Math.cos(a)*1.2+(reduced?0:Math.sin(this.t*.8+i)*.18);m.position.z=Math.sin(a)*.7;m.material.opacity=this.level*.34;}}
+ clear(){this.level=0;this.group.visible=false;}
+}

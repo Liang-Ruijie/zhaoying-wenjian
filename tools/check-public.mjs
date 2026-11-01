@@ -1,0 +1,10 @@
+import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';
+const dir=path.resolve('release/pages'),allowed=['.nojekyll','THIRD_PARTY_NOTICES.txt','index.html','version.json'];
+for(const f of fs.readdirSync(dir))assert(allowed.includes(f),'Unexpected public file: '+f);
+for(const f of ['.nojekyll','index.html','THIRD_PARTY_NOTICES.txt'])assert(fs.existsSync(path.join(dir,f)),f);
+const html=fs.readFileSync(path.join(dir,'index.html'),'utf8');
+const readable=html.replace(/\\u([0-9a-f]{4})/gi,(_,hex)=>String.fromCharCode(parseInt(hex,16)));
+assert(readable.includes('自然语言生成仅在本机服务版提供'),'Missing public capability notice');
+assert(!/sk-[a-zA-Z0-9]{24,}|\/Users\/liang|TRIAL_API_KEY=|192\.168\.0\.115/.test(html),'Private material in public client');
+assert(fs.readFileSync('THIRD_PARTY_NOTICES.txt').equals(fs.readFileSync(path.join(dir,'THIRD_PARTY_NOTICES.txt'))),'Existing notices changed');
+console.log('PASS public file allowlist, capability notice, private-data scan, unchanged notices');

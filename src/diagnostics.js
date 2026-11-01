@@ -1,0 +1,11 @@
+// Local diagnostics only: no storage, network, model weights or raw trajectories.
+export class RunDiagnostics {
+ constructor({enabled=false,now=()=>performance.now()}={}){this.enabled=enabled;this.now=now;this.events=[];this.timings=[];this.active=null;}
+ log(type,context,details={}){if(!this.enabled)return;const safe={};for(const[k,v]of Object.entries(details)){if(typeof v==='number'&&Number.isFinite(v)||typeof v==='boolean')safe[k]=v;else if(typeof v==='string')safe[k]=v.slice(0,200);}this.events.push({type,...context,...safe});if(this.events.length>200)this.events.shift();}
+ begin(runId,round,reason){if(!this.active)this.active={runId,round,reason,start:this.now(),computeMs:null,elapsedTrainingMs:null};}
+ trained(computeMs,elapsedTrainingMs){if(this.active)Object.assign(this.active,{computeMs,elapsedTrainingMs});}
+ finish(outcome,destination,partialComputeMs=null){if(!this.active)return null;const a=this.active;this.active=null;const row={runId:a.runId,round:a.round,reason:a.reason,outcome,destination,interludeMs:Math.max(0,this.now()-a.start),computeMs:a.computeMs??partialComputeMs,elapsedTrainingMs:a.elapsedTrainingMs};this.timings.push(row);if(this.timings.length>50)this.timings.shift();return row;}
+ clear(){this.events.length=0;this.timings.length=0;}
+ snapshot(game){return{version:'zhaoying-diagnostics-1',exportedAt:new Date().toISOString(),scope:'Local diagnostic summaries only; no raw samples, weights, names or trial requests',timingDefinition:'Wall time from leaving battle to actionable profile/combat/result/recovery; includes pause/background, excludes reading an already actionable profile. Cancelled attempts are separate.',events:this.events.map(r=>({...r})),interludes:this.timings.map(r=>({...r})),activeInterlude:this.active?{runId:this.active.runId,round:this.active.round,reason:this.active.reason,elapsedMs:Math.max(0,this.now()-this.active.start)}:null,sampling:{retained:game.recorder.n,total:game.recorder.total,skipped:{...game.recorder.skipped}}};}
+}
+export function downloadDiagnostics(snapshot,doc=document){let url;try{url=URL.createObjectURL(new Blob([JSON.stringify(snapshot,null,2)],{type:'application/json'}));const a=doc.createElement('a');a.href=url;a.download='照影问剑-本机诊断.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);return true;}catch{if(url)URL.revokeObjectURL(url);return false;}}
